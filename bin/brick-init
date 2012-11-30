@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+
+## @file brick-init
+#  Set up the Brick framework on a machine for the first time
+#
+#  @author Derek Dunagan <derek@unifiedarts.com>
+
+import os
+from platform import system
+
+homedir = os.getenv('HOME')
+brickdir = homedir + "/.brick"
+
+if os.path.isdir(brickdir):
+	print "  Your home directory has a .brick folder, so you're good"
+else:
+	print "  Creating .brick folder in your home directory..."
+	os.mkdir(brickdir)
+
+operating_system = system()
+if operating_system == 'Darwin':
+	apps_directory = homedir + '/Sites'
+elif operating_system == 'Windows':
+	apps_directory = homedir + '\wwwroot'
+else:
+	apps_directory = homedir + '/www'
+
+## @todo Prompt user for config keys and just provide defaults in the prompts.
+
+brickconfig_json = """{
+	"appsDirectory": "%s",
+	"appDirectoryName": "brickapp"
+}""" % (apps_directory)
+
+## @todo Check if brickconfig.json exists and if it is valid JSON before
+#        writing to it. Probably prompt the user to continue if the file
+#        exists.
+
+## Maybe error handling would be wise here? We're writing the user's home
+#  directory, so not sure what to try to catch.
+brickconfig_file = open(brickdir + '/brickconfig.json', 'w')
+brickconfig_file.write(brickconfig_json)
+brickconfig_file.close()
