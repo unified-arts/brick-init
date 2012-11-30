@@ -11,9 +11,7 @@ from platform import system
 homedir = os.getenv('HOME')
 brickdir = homedir + "/.brick"
 
-if os.path.isdir(brickdir):
-	print "  Your home directory has a .brick folder, so you're good"
-else:
+if not os.path.isdir(brickdir):
 	print "  Creating .brick folder in your home directory..."
 	os.mkdir(brickdir)
 
@@ -38,6 +36,7 @@ brickconfig_json = """{
 
 ## Maybe error handling would be wise here? We're writing the user's home
 #  directory, so not sure what to try to catch.
+print "  Writing brickconfig.json to your .brick folder..."
 brickconfig_file = open(brickdir + '/brickconfig.json', 'w')
 brickconfig_file.write(brickconfig_json)
 brickconfig_file.close()
