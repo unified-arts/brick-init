@@ -12,22 +12,22 @@ homedir = os.getenv('HOME')
 brickdir = homedir + "/.brick"
 
 if not os.path.isdir(brickdir):
-	print "  Creating .brick folder in your home directory..."
-	os.mkdir(brickdir)
+    print "  Creating .brick folder in your home directory..."
+    os.mkdir(brickdir)
 
 operating_system = system()
 if operating_system == 'Darwin':
-	apps_directory = homedir + '/Sites'
+    apps_directory = homedir + '/Sites'
 elif operating_system == 'Windows':
-	apps_directory = homedir + '\wwwroot'
+    apps_directory = homedir + '\wwwroot'
 else:
-	apps_directory = homedir + '/www'
+    apps_directory = homedir + '/www'
 
 ## @todo Prompt user for config keys and just provide defaults in the prompts.
 
 brickconfig_json = """{
-	"appsDirectory": "%s",
-	"appDirectoryName": "brickapp"
+    "appsDirectory": "%s",
+    "appDirectoryName": "brickapp"
 }""" % (apps_directory)
 
 ## @todo Check if brickconfig.json exists and if it is valid JSON before
