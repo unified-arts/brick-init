@@ -3,6 +3,8 @@
 ## @file brick-init
 #  Set up the Brick framework on a machine for the first time
 #
+#  @todo Add --help option
+#
 #  @author Derek Dunagan <derek@unifiedarts.com>
 
 import os
